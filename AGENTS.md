@@ -28,3 +28,8 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Architecture
+- Frontend-only demo: product catalogue is static data in `src/lib/products.ts`; cart/wishlist/user/order state lives in a React context (`src/lib/store.tsx`) persisted to localStorage and read only after hydration. Why: university brief requires no backend and persistent cart.
+- Pricing rules (shipping, tax, quantity caps) live in `src/lib/cart-math.ts` with tests in `src/test/cart-math.test.ts`. Why: keep money logic pure and testable.
+- Payments are simulated in checkout; never wire a real processor without the user asking. Why: brief forbids real payment processing.
